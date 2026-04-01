@@ -5,21 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Character Gallery</title>
 <style>
-    @font-face {
-        font-family: 'YPairingFont-Bold';
-        src: url('https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Character/main/YPairingFont-Bold.ttf') format('truetype'), url('https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Character/main/YPairingFont-Bold.woff') format('woff'), url('https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Character/main/YPairingFont-Bold.woff2') format('woff2');
-        font-weight: bold;
-        font-style: normal;
-        font-display: swap;
-    }
+   @font-face {
+    font-family: 'YPairingFont-Bold';
+    src: url('./YPairingFont-Bold.woff2') format('woff2'),
+         url('./YPairingFont-Bold.woff') format('woff'),
+         url('./YPairingFont-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
     @font-face {
         font-family: 'YPairingFont-Regular';
-        src: url('https://github.com/mheugimja-cyber/Lumo_Character/blob/main/YPairingFont-Regular.ttf') format('truetype'); 
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-    }
-
+    @font-face {
+    font-family: 'YPairingFont-Regular';
+    src: url('./YPairingFont-Regular.woff2') format('woff2'),
+         url('./YPairingFont-Regular.woff') format('woff'),
+         url('./YPairingFont-Regular.ttf') format('truetype');
+    font-weight: Regular;
+    font-style: normal;
+    font-display: swap;
+}
     * { margin:0; padding:0; box-sizing:border-box; }
 
     body {
