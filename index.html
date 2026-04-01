@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Character Gallery</title>
+<style>
+    @font-face {
+     font-family: 'YPairingFont-Bold';
+     src: url('./YPairingFont-Bold.ttf') format('truetype');
+     font-weight: bold;
+     font-style: normal;
+     font-display: swap;
+ }
+
+    @font-face {
+     font-family: 'YPairingFont-Regular';
+     src: url('./YPairingFont-Regular.ttf') format('truetype');
+     font-weight: normal;
+     font-style: normal;
+     font-display: swap;
+ }
+    
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+        font-family: 'YPairingFont-Regular', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: #ffffff;
+        color: #000000;
+        padding: 20px;
+        line-height: 1.5;
+    }
+
+    button, input, select, textarea { font-family: 'YPairingFont-Regular', sans-serif; }
+
+    .container { max-width: 1200px; margin:0 auto; }
+
+    h1 { font-family: 'YPairingFont-Bold', sans-serif; }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+        margin-top: 50px;
+    }
+
+    .char-card {
+        background: #f8f8f8;
+        border: none;
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .char-card:hover {
+        background: #000000;
+        color: #ffffff;
+        transform: scale(1.05);
+    }
+
+    .char-emoji {
+        font-size: 32px;
+        margin-bottom: 5px;
+        font-family: 'YPairingFont-Bold', sans-serif;
+    }
+
+    .char-name {
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'YPairingFont-Bold', sans-serif;
+    }
+
+    .modal {
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.8);
+    z-index:1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+    .modal-content p.description {
+        font-size: 16px;
+        font-family: 'YPairingFont-Bold', sans-serif;
+    }
+
+    .modal-content p.tags {
+        font-size: 14px;
+        font-family: 'YPairingFont-Regular', sans-serif;
+        color: #555;
+    }
+    .modal-content {
+        background: #ffffff;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 400px;
+
+        /* 세로로 긴 비율 */
+        aspect-ratio: 9 / 16;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        /* 내용 넘치면 스크롤 */
+        overflow-y: auto;
+        position: relative;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .modal img {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* 원본 비율 유지 */
+        border-radius: 15px;
+        margin-bottom: 15px;
+    }
+
+    .close {
+        position: absolute;
+        top: 0px;
+        right: 19px;
+        font-size: 45px;
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .chat-btn {
+        background: #000000;
+        color: #ffffff;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background 0.3s;
+    }
+    .chat-btn:hover { background: #333333; }
+
+    @media (max-width: 768px) {
+        .modal-content { padding: 15px; margin: 10px; }
+    }
+
+    @media (max-width: 480px) {
+        .modal-content { padding: 10px; margin: 5px; }
+    }
+     
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="text-align:center; margin-bottom:20px; font-size:33px;">깖흑임자딲</h1>
+    <h1 style="text-align:center; margin-bottom:20px; font-size:28px;">캐릭터 모음집츘꾺</h1>
+    <div class="grid">
+        <div class="char-card" onclick="openModal('ren')">
+            <span class="char-emoji">⚜️</span>
+            <span class="char-name">럾카이엘럾</span>
+        </div>
+        <div class="char-card" onclick="openModal('asel')">
+            <span class="char-emoji">🐺</span>
+            <span class="char-name">럾아셀럾</span>
+        </div>
+        <div class="char-card" onclick="openModal('ren2')">
+            <span class="char-emoji">🐲</span>
+            <span class="char-name">럾카미조 렌럾</span>
+        </div>
+        <div class="char-card" onclick="openModal('youuto')">
+            <span class="char-emoji">🦊</span>
+            <span class="char-name">럾미카게 유우토럾</span>
+        </div>
+    </div>
+</div>
+
+<!-- 모달 구조: 이미지 + 내용만 -->
+<div id="modal-ren" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('ren')">&times;</span>
+        <img src="https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Char_image/refs/heads/main/Kaiel.png" alt="카이엘 이미지">
+        <h2>폮폮잒끆끆</h2>      
+        <h2>카이엘 드 라크루아</h2>
+        <p class="description">193cm, 26세, 라크루아 소공작</p>
+        <p class="tags">#로판 #저주 받은 소공작 #상처남 #동정남</p>   
+        <button class="chat-btn" onclick="window.open('https://lumo.gg/character/825473880401901292','_blank')">츋꾺</button>
+    </div>
+</div>
+
+<div id="modal-asel" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('asel')">&times;</span>
+        <img src="https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Char_image/refs/heads/main/Asel.png" alt="아셀 이미지">
+        <h2>폮잒끆</h2>      
+        <h2>아셀</h2>
+        <p class="description">195cm, 20세, 제국 군사 학교 신입생</p>
+        <p class="tags">#로판 #늑대 신의 아이 #반인반신</p>
+        <p class="tags">#소유욕 #동정남 #순애</p>      
+        <button class="chat-btn" onclick="window.open('https://lumo.gg/character/825797532045538778','_blank')">츋꾺</button>
+    </div>
+</div>
+
+<div id="modal-ren2" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('ren2')">&times;</span>
+        <img src="https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Char_image/refs/heads/main/Kamijo.png" alt="카미조 렌 이미지">
+        <h2>폮잒끆</h2>      
+        <h2>카미조 렌</h2>
+        <p class="description">188cm, 35세, 세이류회 대표</p>
+        <p class="tags">#BDSM #조용한 통제 #절제된 권력</p>
+        <button class="chat-btn" onclick="window.open('https://lumo.gg/character/826121513838667231','_blank')">츋꾺</button>
+    </div>
+</div>
+
+<div id="modal-youuto" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('youuto')">&times;</span>
+        <img src="https://raw.githubusercontent.com/mheugimja-cyber/Lumo_Char_image/refs/heads/main/Mikage.png" alt="미카게 유우토 이미지">
+        <h2>폮잒끆</h2>      
+        <h2>미카게 유우토</h2>
+        <p class="description">178cm, 28세, 세이류회 부대표</p>
+        <p class="tags">#BDSM #부드러운 통제자 #실질 운영자</p>
+        <button class="chat-btn" onclick="window.open('https://lumo.gg/character/826366002192804095','_blank')">츋꾺</button>
+    </div>
+</div>
+
+<script>
+    function openModal(id) { document.getElementById('modal-' + id).style.display = 'flex'; }
+    function closeModal(id) { document.getElementById('modal-' + id).style.display = 'none'; }
+    window.onclick = function(event) { if(event.target.classList.contains('modal')) { event.target.style.display='none'; } }
+</script>
+
+</body>
+</html>
