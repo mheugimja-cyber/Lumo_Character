@@ -1,0 +1,16 @@
+Copyright (c) 2026 M.heugimja
+
+All Rights Reserved.
+
+Permission is NOT granted to copy, modify, distribute, or use
+the content of this repository (including images, code, and other assets)
+for any purpose without explicit written permission from the copyright holder.
+
+If you wish to use any part of this repository for personal or public purposes,
+you must provide proper attribution to the copyright holder as follows:
+
+    © 2026 M.heugimja
+
+Commercial use is strictly prohibited.
+
+For inquiries or requests for permission, contact: m.heugimja@gmail.com
